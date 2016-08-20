@@ -51,7 +51,7 @@
                             <button id="buttonPower" class="btn btn-danger operator" value=power><h1>^</h1></button>
                             <button id="buttonEqual" class="btn btn-success equal" value=equals><h1>=</h1></button>
                             <br><br>
-                            <button id="button0" class="btn btn-default clear" value=clear value=clear><h1>clear</h1></button>
+                            <button id="buttonClear" class="btn btn-default clear" value=clear value=clear><h1>clear</h1></button>
                 </div>
 
             </div>
@@ -79,10 +79,88 @@
 
 $(document).ready(function(){
 
-// Your code here...
+    var firstNumber = ""; 
+    var secondNumber = "";
+    var operator = "";
+    var result;
+
+    
+    for (i=0 ; i<10 ; i++){
+        $("#button" + i + "").on("click", function() {
+            if (operator == ""){
+             firstNumber = firstNumber + $(this).val();
+            $("#firstNumber").append($(this).val());
+            }
+            else {
+                secondNumber = secondNumber + $(this).val();
+                $("#secondNumber").append($(this).val());
+            }
+        })
+    }
+
+   
+    $("#buttonPlus").on("click", function(){
+        operator = $(this).val();
+        $("#operator").append($(this).val())
+    });
+
+    $("#buttonMinus").on("click", function(){
+        operator = $(this).val();
+        $("#operator").append($(this).val())
+    });
+
+    $("#buttonMultiply").on("click", function(){
+        operator = $(this).val();
+        $("#operator").append($(this).val())
+    });
+
+    $("#buttonDivide").on("click", function(){
+        operator = $(this).val();
+        $("#operator").append($(this).val())
+    });
+
+    $("#buttonPower").on("click", function(){
+        operator = $(this).val();
+        $("#operator").append($(this).val())
+    });
 
 
-})
+     $("#buttonEqual").on("click", function(){
+        firstNumber = parseInt(firstNumber);
+        secondNumber = parseInt(secondNumber);
+        if (operator == "plus"){
+            result = firstNumber + secondNumber
+        }
+        else if (operator == "minus") {
+            result = firstNumber - secondNumber
+        }
+        else if (operator == "times") {
+            result = firstNumber * secondNumber
+        }
+        else if (operator == "divide") {
+            result = firstNumber/secondNumber
+        }
+
+        else if (operator == "power") {
+            result = Math.pow(firstNumber,secondNumber)
+        }
+        $('#result').append(result)
+    });
+
+     $('#buttonClear').on(function(){
+        firstNumber = ""; 
+        secondNumber = "";
+        operator = "";
+        result = 0;
+        $("#firstNumber").html("")
+        $("#secondNumber").html("")
+        $("#operator").html("")
+        $("#result").html("")
+     })
+});
+
+
+
 
 </script>
     
